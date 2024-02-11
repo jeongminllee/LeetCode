@@ -1,38 +1,16 @@
 class Solution:
-    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
-        m, n = len(matrix), len(matrix[0])
-        dp = [[-1] * n for _ in range(m)]
-
-        for cy in range(m) :
-            for cx in range(n) :
-                self.dfs(cy, cx, 1, dp, matrix)
-
-        answer = 0
-
-        for cy in range(m) :
-            for cx in range(n) :
-                answer = max(answer, dp[cy][cx])
-
-        return answer
-
-    def dfs(self, cy, cx, depth, dp, matrix) :
-        if dp[cy][cx] >= depth :
-            return
-
-        dp[cy][cx] = depth
-
-        dyxs = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-
-        for dy, dx in dyxs :
-            ny = cy + dy
-            nx = cx + dx
-
-            if self.is_in(ny, nx, matrix) :
-                if matrix[ny][nx] > matrix[cy][cx] :
-                    self.dfs(ny, nx, depth + 1, dp, matrix)
-
-    def is_in(self, idx_row, idx_col, map) :
-        if (0 <= idx_row < len(map)) and (0 <= idx_col < len(map[0])) :
-            return True
-
-        return False
+    def longestIncreasingPath(self, matrix: List[List[int]]) -> int:        
+        R = len(matrix)
+        C = len(matrix[0])
+        dp = [[0] * C for r in range(R)]
+        def dfs(i, j):
+            if not dp[i][j]:
+                var = matrix[i][j]
+                dp[i][j] = 1 + max(
+                    dfs(i-1, j) if i and var > matrix[i-1][j] else 0,
+                    dfs(i+1, j) if i < R - 1 and var > matrix[i+1][j] else 0,
+                    dfs(i, j-1) if j and var > matrix[i][j-1] else 0,
+                    dfs(i, j+1) if j < C - 1 and var > matrix[i][j+1] else 0
+                )
+            return dp[i][j]
+        return max(dfs(x,y) for x in range(R) for y in range(C))
