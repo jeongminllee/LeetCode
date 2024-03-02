@@ -1,15 +1,11 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        def possible(k) :
-            return sum((p - 1) // k + 1 for p in piles) <= h
-
-        low = 1
-        high = max(piles)
-        while low < high :
-            mid = (low + high) // 2
-            if not possible(mid) :
-                low = mid + 1
+        l, r = 1, max(piles)
+        while l < r :
+            m = (l + r) // 2
+            if sum((p - 1) // m + 1 for p in piles) <= h :
+                r = m
             else :
-                high = mid
+                l = m + 1
 
-        return low
+        return l
