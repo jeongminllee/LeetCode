@@ -4,10 +4,7 @@ class TimeMap:
         self.dic = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        if key not in self.dic :
-            self.dic[key] = [(value, timestamp)]
-        else :
-            self.dic[key].append((value, int(timestamp)))
+        self.dic[key].append((value, int(timestamp)))
 
     def get(self, key: str, timestamp: int) -> str:
         res = ""
