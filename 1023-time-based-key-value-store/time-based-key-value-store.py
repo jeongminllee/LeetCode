@@ -1,7 +1,7 @@
 class TimeMap:
 
     def __init__(self):
-        self.dic = {}
+        self.dic = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
         if key not in self.dic :
