@@ -12,3 +12,13 @@ class Solution:
             t_map[char] = t_map.get(char, 0) + 1
         
         return s_map == t_map
+
+# class Solution:
+#     def isAnagram(self, s: str, t: str) -> bool:
+#         s = sorted(s)
+#         t = sorted(t)
+        
+#         if s == t :
+#             return True
+#         else :
+#             return False
