@@ -1,18 +1,13 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        left = 0
-        right = len(nums) - 1
-
-        while left <= right :
-            mid = (left + right) // 2
-
+        # nums.sort() # 만약 sorted가 되어 있지 않다면.
+        s, e = 0, len(nums) - 1
+        while s <= e :
+            mid = (s + e) // 2
             if nums[mid] == target :
                 return mid
-
-            elif nums[mid] < target :
-                left = mid + 1
-
+            elif nums[mid] > target :
+                e = mid - 1
             else :
-                right = mid - 1
-
+                s = mid + 1
         return -1
