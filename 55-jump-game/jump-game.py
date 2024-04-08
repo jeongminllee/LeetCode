@@ -3,11 +3,10 @@ class Solution:
         # goal = last index
         goal = len(nums) - 1
 
-        # 마지막 인덱스 - 1 부터 돌면서 
-        for i in range(len(nums) - 2, -1, -1) :
-        # 현재 위치 + 위치에서 이동할 수 있는 거리 >= 마지막 인덱스라면
+        # last index - 1 부터 돌면서
+        for i in range(len(nums)-2, -1, -1) :
+            
             if i + nums[i] >= goal :
-                # 해당 위치의 인덱스로 goal을 바꾼다.
                 goal = i
-        
-        return True if goal == 0 else False
+
+        return goal == 0
