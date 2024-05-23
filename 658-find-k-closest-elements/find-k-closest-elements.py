@@ -11,5 +11,4 @@ class Solution:
             else :
                 r -= 1
 
-        return arr[l:r+1
-        ]
+        return arr[l:r+1]
