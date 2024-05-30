@@ -5,11 +5,14 @@ class Solution:
         """
         n, m = len(matrix), len(matrix[0])
         arrI, arrJ = set(), set()
+        # arrI, arrJ = [], []
         for i in range(n) :
             for j in range(m) :
                 if matrix[i][j] == 0 :
                     arrI.add(i)
                     arrJ.add(j)
+                    # arrI.append(i)
+                    # arrJ.append(j)
 
         for i in range(n) :
             for j in range(m) :
