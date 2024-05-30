@@ -4,12 +4,12 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         n, m = len(matrix), len(matrix[0])
-        arrI, arrJ = [], []
+        arrI, arrJ = set(), set()
         for i in range(n) :
             for j in range(m) :
                 if matrix[i][j] == 0 :
-                    arrI.append(i)
-                    arrJ.append(j)
+                    arrI.add(i)
+                    arrJ.add(j)
 
         for i in range(n) :
             for j in range(m) :
