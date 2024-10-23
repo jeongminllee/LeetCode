@@ -4,10 +4,7 @@ class Solution:
         ans = []
 
         for num in nums :
-            if num not in counter :
-                counter[num] = 1
-            else :
-                counter[num] += 1
+            counter[num] += 1
 
         sort_cnt = sorted(counter.items(), key=lambda x:x[1], reverse=True)
 
