@@ -1,17 +1,17 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        dct = {}
+        counter = defaultdict(int)
         ans = []
 
-        for n in nums :
-            if n in dct :
-                dct[n] += 1
+        for num in nums :
+            if num not in counter :
+                counter[num] = 1
             else :
-                dct[n] = 1
+                counter[num] += 1
 
-        sort_dct = sorted(dct.items(), key=lambda x:x[1], reverse=True)
+        sort_cnt = sorted(counter.items(), key=lambda x:x[1], reverse=True)
 
         for i in range(k) :
-            ans.append(sort_dct[i][0])
-        
+            ans.append(sort_cnt[i][0])
+
         return ans
