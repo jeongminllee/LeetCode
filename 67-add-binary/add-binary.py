@@ -17,11 +17,10 @@ class Solution:
 
         nums = decimal_a + decimal_b
         # res = bin(nums)[2:]
-        if nums == 0 :
-            return '0'
+
         while nums != 0 :
             residue = nums % 2
             res.append(str(residue))
             nums //= 2
         ans = ''.join(res[::-1])
-        return ans
+        return ans if ans != '' else '0'
