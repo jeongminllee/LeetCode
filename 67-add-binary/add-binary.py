@@ -1,6 +1,8 @@
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
         decimal_a = decimal_b = 0
+        res = []
+        ans = ''
         
         for i in range(len(a)) :
             if a[i] == '1' :
@@ -14,5 +16,12 @@ class Solution:
         # print('decimal_b', decimal_b)
 
         nums = decimal_a + decimal_b
-        res = bin(nums)[2:]
-        return res
+        # res = bin(nums)[2:]
+        if nums == 0 :
+            return '0'
+        while nums != 0 :
+            residue = nums % 2
+            res.append(str(residue))
+            nums //= 2
+        ans = ''.join(res[::-1])
+        return ans
