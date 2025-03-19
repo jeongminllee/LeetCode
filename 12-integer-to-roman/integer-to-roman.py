@@ -18,7 +18,8 @@ class Solution:
         ]
 
         for s, val in reversed(arr) :
-            cnt = num // val
-            res += (s * cnt)
-            num = num % val
+            if num // val :
+                cnt = num // val
+                res += (s * cnt)
+                num = num % val
         return res
