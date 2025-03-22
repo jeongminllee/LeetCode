@@ -1,6 +1,6 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        transaction1, transaction2 = float('inf'), float('inf')
+        transaction1, transaction2 = 1 << 32, 1 << 32
         profit1, profit2 = 0, 0
 
         for i in prices :
