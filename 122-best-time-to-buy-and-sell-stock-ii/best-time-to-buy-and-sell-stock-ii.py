@@ -4,10 +4,9 @@ class Solution:
         res = 0
 
         for price in prices :
-            if current > price :
-                current = price
-            else :
+            if current < price :
                 res += price - current
-                current = price
+            current = price
+            
 
         return res
