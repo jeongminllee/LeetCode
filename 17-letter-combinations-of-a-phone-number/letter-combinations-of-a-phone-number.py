@@ -1,9 +1,9 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        if not digits :
+        if digits == '' :
             return []
 
-        digit_to_letters = {
+        numbers_to_letter = {
             '2' : 'abc',
             '3' : 'def',
             '4' : 'ghi',
@@ -13,15 +13,16 @@ class Solution:
             '8' : 'tuv',
             '9' : 'wxyz'
         }
+        
+        stack = []
 
-        def backtrack(idx, comb) :
+        def backtrack(idx, res) :
             if idx == len(digits) :
-                res.append(comb[:])
+                stack.append(res[:])
                 return
 
-            for letter in digit_to_letters[digits[idx]] :
-                backtrack(idx + 1, comb + letter)
+            for letter in numbers_to_letter[digits[idx]] :
+                backtrack(idx + 1, res + letter)
 
-        res = []
         backtrack(0, '')
-        return res
+        return stack
