@@ -5,16 +5,12 @@ class Solution:
 
         hashTable = {}
         for maga in magazine :
-            if maga not in hashTable :
-                hashTable[maga] = 1
-            else :
-                hashTable[maga] += 1
-
+            hashTable[maga] = 1 + hashTable.get(maga, 0)
+            
         for ransom in ransomNote :
             if ransom not in hashTable or hashTable[ransom] <= 0 :
                 return False
 
-            if hashTable[ransom] :
-                hashTable[ransom] -= 1
+            hashTable[ransom] -= 1
         
         return True
