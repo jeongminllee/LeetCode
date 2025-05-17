@@ -1,8 +1,5 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        if len(ransomNote) > len(magazine) :
-            return False
-
         hashTable = {}
         for maga in magazine :
             hashTable[maga] = 1 + hashTable.get(maga, 0)
