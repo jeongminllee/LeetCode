@@ -3,8 +3,8 @@ class Solution:
         left = right = 0
 
         for i in range(len(s)) :
-            odd = self.expand_around_center(s, i, i)
-            even = self.expand_around_center(s, i, i + 1)
+            odd = self.palindrome(s, i, i)
+            even = self.palindrome(s, i, i + 1)
             max_length = max(odd, even)
 
             if max_length > right - left :
@@ -13,9 +13,8 @@ class Solution:
 
         return s[left:right+1]
 
-    def expand_around_center(self, s: str, left: int, right: int) -> int :
+    def palindrome(self, s, left, right) :
         while 0 <= left and right < len(s) and s[left] == s[right] :
             left -= 1
             right += 1
-        
-        return right - left - 1
+        return (right - 1) - (left + 1) + 1
