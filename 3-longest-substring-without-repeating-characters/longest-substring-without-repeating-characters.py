@@ -11,5 +11,5 @@ class Solution:
             
             char_set.add(s[right])
             cnt = max(cnt, right - left + 1)
-        
+
         return cnt
