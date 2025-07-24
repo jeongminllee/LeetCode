@@ -1,5 +1,19 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
+        res = nums[0]
+        tmp = 0
+
+        for num in nums :
+            if tmp < 0 :
+                tmp = 0
+
+            tmp += num
+            res = max(res, tmp)
+
+        return res
+'''
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
         if len(nums) == 1 :
             return nums[0]
 
@@ -22,3 +36,4 @@ class Solution:
         cross_max = left_sum + right_sum
 
         return max(left_max, right_max, cross_max)
+'''
