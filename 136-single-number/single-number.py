@@ -1,9 +1,9 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        dct = defaultdict(int)
-        for num in nums :
-            dct[num] += 1
+        dct = defaultdict(list)
+        for i in range(len(nums)) :
+            dct[nums[i]].append(i)
 
-        for num in nums :
-            if dct[num] == 1 :
-                return num
+        for key, val in dct.items() :
+            if len(val) == 1 :
+                return key
