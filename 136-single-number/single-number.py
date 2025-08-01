@@ -1,9 +1,9 @@
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        dct = defaultdict(list)
-        for i in range(len(nums)) :
-            dct[nums[i]].append(i)
-
-        for key, val in dct.items() :
-            if len(val) == 1 :
-                return key
+        # Linear runtime complexity 
+        # constant extra space 는 무슨말이여
+        # 상수 ?? 공간??
+        res = 0
+        for num in nums :
+            res ^= num
+        return res
