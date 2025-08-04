@@ -4,9 +4,10 @@ class Solution:
 
         while left <= right :
             mid = (left + right) // 2
-            if mid * mid == x :
+            sq_mid = mid * mid
+            if sq_mid == x :
                 return mid
-            elif mid * mid > x :
+            elif sq_mid > x :
                 right = mid - 1
             else :
                 left = mid + 1
