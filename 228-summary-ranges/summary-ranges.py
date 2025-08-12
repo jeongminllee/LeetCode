@@ -1,32 +1,32 @@
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        if not nums :
+        if nums == [] :
             return []
+        
+        if len(nums) == 1 :
+            return [f"{nums[0]}"]
 
         res = []
+        tmp = [nums[0], nums[0]]
         i = nums[0]
-        ans = [i, i]
 
-        if len(nums) == 1 :
-            return [f'{nums[0]}']
-
-        for num in nums :
+        for num in nums[1:] :
+            i += 1
             if num == i :
-                ans[1] = i
-                i += 1
+                tmp[1] = i
             else :
-                if ans[0] == ans[1] :
-                    res.append(f'{ans[0]}')
+                if tmp[0] != tmp[1] :
+                    res.append(f"{tmp[0]}->{tmp[1]}")
                 else :
-                    res.append(f'{ans[0]}->{ans[1]}')
-                
-                ans[0] = num
-                ans[1] = num
-                i = num + 1
-        # print(ans)
-        if ans[0] == ans[1] :
-            res.append(f'{ans[0]}')
+                    res.append(f"{tmp[0]}")
+
+                tmp = [num, num]
+                i = num
+        
+        tmp[1] = i
+        if tmp[0] != tmp[1] :
+            res.append(f"{tmp[0]}->{tmp[1]}")
         else :
-            res.append(f'{ans[0]}->{ans[1]}')
+            res.append(f"{tmp[0]}")
 
         return res
