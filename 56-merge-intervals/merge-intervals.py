@@ -9,7 +9,7 @@ class Solution:
                 temp[1] = max(temp[1], interval[1])
             else :
                 res.append(temp)
-                temp = interval
+                temp = interval[:]
 
         res.append(temp)
         return res
