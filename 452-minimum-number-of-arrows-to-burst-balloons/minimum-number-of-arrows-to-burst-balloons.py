@@ -1,6 +1,7 @@
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        points.sort()
+        points.sort(key=lambda x:x[1])
+
         cnt = 1
         end = points[0][1]
 
@@ -8,7 +9,7 @@ class Solution:
             if ball[0] > end :
                 cnt += 1
                 end = ball[1]
-            else :
-                end = min(end, ball[1])
+            # else :
+            #     end = min(end, ball[1])
 
         return cnt
