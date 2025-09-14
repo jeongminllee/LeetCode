@@ -3,20 +3,17 @@ class Solution:
         n, m = len(grid), len(grid[0])
         INF = 1 << 32
 
-        q = []
-        heapq.heappush(q, (grid[0][0], 0, 0))
         visited = [[INF] * m for _ in range(n)]
         visited[0][0] = grid[0][0]
 
-        while q :
-            val, ci, cj = heapq.heappop(q)
-            if (ci, cj) == (n - 1, m - 1) :
-                return val
-            for di, dj in ((0, 1), (1, 0)) :
-                ni, nj = ci + di, cj + dj
-                if 0 <= ni < n and 0 <= nj < m :
-                    if visited[ni][nj] > visited[ci][cj] + grid[ni][nj] :
-                        visited[ni][nj] = visited[ci][cj] + grid[ni][nj]
-                        heapq.heappush(q, (visited[ni][nj], ni, nj))
+        for i in range(n) :
+            for j in range(m) :
+                if i == 0 and j == 0 :
+                    continue
 
-        return visited[n-1][m-1]
+                visited[i][j] = min(
+                    visited[i-1][j] if i > 0 else INF, 
+                    visited[i][j-1] if j > 0 else INF
+                ) + grid[i][j]
+
+        return visited[-1][-1]
