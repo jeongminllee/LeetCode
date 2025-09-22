@@ -4,6 +4,9 @@ class Solution:
         for char in s :
             if char.isalnum() :
                 res += char.lower()
+
+        return res == res[::-1]
+        '''
         
         n = len(res)
 
@@ -17,3 +20,4 @@ class Solution:
                 return False
         
         return True
+        '''
