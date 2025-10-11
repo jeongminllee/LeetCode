@@ -20,7 +20,9 @@ class Solution:
         cnt = 0
         res = ''
 
-        for roman, inti in reversed(int_to_roman) :
+        int_to_roman.sort(key=lambda x:x[1], reverse=True)
+
+        for roman, inti in int_to_roman :
             cnt = num // inti
             res += roman * cnt
             num %= inti
