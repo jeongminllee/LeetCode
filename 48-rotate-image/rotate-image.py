@@ -3,23 +3,11 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
+        
         n = len(matrix)
+        for i in range(n) :
+            for j in range(i + 1, n) :
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-        top = 0
-        bottom = n - 1
-
-        while top < bottom :
-            for col in range(n) :
-                tmp = matrix[top][col]
-                matrix[top][col] = matrix[bottom][col]
-                matrix[bottom][col] = tmp
-            top += 1
-            bottom -= 1
-
-        for row in range(n) :
-            for col in range(row+1, n) :
-                tmp = matrix[row][col]
-                matrix[row][col] = matrix[col][row]
-                matrix[col][row] = tmp
-
-        return matrix
+        for i in range(n) :
+            matrix[i].reverse()
