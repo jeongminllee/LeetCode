@@ -6,22 +6,20 @@
 #         self.right = right
 class Solution:
     def __init__(self) :
-        self.answer = 0
+        self.result = 0
 
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         self.dfs(root, 0)
-        return self.answer
-        
-        
+        return self.result
+
     def dfs(self, node: Optional[TreeNode], value: int) -> int :
-        nxt_value = value * 10 + node.val
-
-        if node.left is None and node.right is None :
-            self.answer += nxt_value
-            return
-
-        if node.left :
-            self.dfs(node.left, nxt_value)
+        nxt = value*10 + node.val
         
+        if node.left :
+            self.dfs(node.left, nxt)
         if node.right :
-            self.dfs(node.right, nxt_value)
+            self.dfs(node.right, nxt)
+        
+        if node.left is None and node.right is None :
+            self.result += nxt
+            return
