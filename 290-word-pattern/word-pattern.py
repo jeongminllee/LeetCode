@@ -1,24 +1,31 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        s = s.split()
-        if len(pattern) != len(s) :
-            return False
-            
         c2word = {}
         word2c = {}
 
+        s = s.split()
+
+        if len(pattern) != len(s) :
+            return False
+
         for i in range(len(pattern)) :
-            if pattern[i] not in c2word :
-                c2word[pattern[i]] = s[i]
+            char = pattern[i]
+            if char not in c2word :
+                c2word[char] = s[i]
             else :
-                if c2word[pattern[i]] != s[i] :
+                if c2word[char] == s[i] :
+                    continue
+                else :
                     return False
         
         for i in range(len(s)) :
-            if s[i] not in word2c :
-                word2c[s[i]] = pattern[i]
+            word = s[i]
+            if word not in word2c :
+                word2c[word] = pattern[i]
             else :
-                if word2c[s[i]] != pattern[i] :
+                if word2c[word] == pattern[i] :
+                    continue
+                else :
                     return False
-
+        
         return True
