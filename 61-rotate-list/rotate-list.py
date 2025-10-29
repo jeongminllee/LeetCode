@@ -25,8 +25,8 @@ class Solution:
 
 
     def get_tail(self, node: Optional[ListNode]) -> Optional[ListNode] :
-        # prev = node
-        # node = node.next
+        prev = node
+        node = node.next
 
         while node.next :
             prev = node
