@@ -13,19 +13,18 @@ class Solution:
         if root is None :
             return root
 
-        dct = {}
-        self.postorder(root, 0, dct)
+        self.postorder(root, 0, {})
         return root
 
-    def postorder(self, node: 'Node', level: int, dct: dict) :
+    def postorder(self, node, level:int, dct:dict) :
         node.next = None
 
         if node.left :
             self.postorder(node.left, level + 1, dct)
-
         if node.right :
             self.postorder(node.right, level + 1, dct)
-
+        
         if level in dct.keys() :
             dct[level].next = node
         dct[level] = node
+        
