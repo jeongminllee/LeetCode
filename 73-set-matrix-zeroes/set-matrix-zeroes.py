@@ -4,14 +4,18 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
         n, m = len(matrix), len(matrix[0])
-        mat = set()
-
+        target = []
+        
         for i in range(n) :
-             for j in range(m) :
+            for j in range(m) :
                 if matrix[i][j] == 0 :
-                    mat.add((i, j))
+                    target.append((i, j))
+        
+        for i, j in target :
+            for a in range(n) :
+                matrix[a][j] = 0
+            
+            for b in range(m) :
+                matrix[i][b] = 0
 
-        for i, j in mat :
-            matrix[i] = [0] * m
-            for row in range(n) :
-                matrix[row][j] = 0
+        
