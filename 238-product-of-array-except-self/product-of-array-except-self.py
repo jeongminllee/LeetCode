@@ -4,13 +4,13 @@ class Solution:
         res = [1] * n
         
         left = 1
+        right = 1
+
         for i in range(n) :
             res[i] *= left
             left *= nums[i]
 
-        right = 1
-        for i in range(n-1, -1, -1) :
-            res[i] *= right
-            right *= nums[i]
-            
+            res[(n-1)-i] *= right
+            right *= nums[(n-1)-i]
+
         return res
