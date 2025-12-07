@@ -1,8 +1,5 @@
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
-        if obstacleGrid[0][0] == 1 :
-            return 0
-        
         n, m = len(obstacleGrid), len(obstacleGrid[0])
 
         dp = [[0] * m for _ in range(n)]
@@ -25,5 +22,4 @@ class Solution:
                 else :
                     dp[i][j] = 0
 
-        print(dp)
         return dp[-1][-1]
