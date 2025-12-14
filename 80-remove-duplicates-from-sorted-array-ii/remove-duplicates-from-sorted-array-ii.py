@@ -1,12 +1,15 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        dct = defaultdict(int)
-        idx_k = 0
-        for idx_num in range(len(nums)) :
-            if dct[nums[idx_num]] < 2 :
-                nums[idx_k] = nums[idx_num]
-                dct[nums[idx_num]] += 1
-                idx_k += 1
+        k = cnt = 1
 
+        for i in range(1, len(nums)) :
+            if nums[i-1] == nums[i] :
+                cnt += 1
+            else :
+                cnt = 1
 
-        return idx_k
+            if cnt <= 2 :
+                nums[k] = nums[i]
+                k += 1
+
+        return k
