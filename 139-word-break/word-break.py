@@ -1,13 +1,19 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        wordSet = set(wordDict)
         dp = [False for _ in range(len(s) + 1)]
         dp[0] = True
 
-        for i in range(1, len(dp)) :
-            for j in range(i) :
-                if dp[j] and s[j:i] in wordSet :
-                    dp[i] = True
-                    break
+        return self.mywordbreak(s, 0, len(s), wordDict, dp)
 
-        return dp[-1]
+    def mywordbreak(self, s:str, fr: int, length: int, wordDict: List[str], dp: List[bool]) :
+        if fr == length :
+            return True
+
+        for word in wordDict :
+            nxt = fr + len(word)
+            if nxt <= length and dp[nxt] == False and s[fr : nxt] == word :
+                dp[fr + len(word)] = True
+                if self.mywordbreak(s, nxt, length, wordDict, dp) :
+                    return True
+                
+        return False
