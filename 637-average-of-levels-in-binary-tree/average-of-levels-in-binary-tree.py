@@ -7,31 +7,20 @@
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         dummy = root
-        idx = 0
-        lst = [[] for _ in range(10**4 + 1)]
-        res = []
+        q = deque()
+        q.append(dummy)
+        averages = []
 
-        self.average_tree(dummy, 0, lst)
+        while q :
+            lv_sum, length = 0, len(q)
+            for _ in range(length) :
+                node = q.popleft()
+                lv_sum += node.val
+                if node.left :
+                    q.append(node.left)
+                if node.right :
+                    q.append(node.right)
 
-        print(lst)
-        while lst[idx] :
-            length = len(lst[idx])
-            res.append(sum(lst[idx]) / length)
-            idx += 1
-        
-        return res
-        
+            averages.append(lv_sum / length)
 
-    def average_tree(self, tree: Optional[TreeNode], idx: int, lst: List) :
-        if tree.left is None and tree.right is None :
-            lst[idx].append(tree.val)
-            return 
-
-        if tree.left :
-            self.average_tree(tree.left, idx+1, lst)
-        if tree.right :
-            self.average_tree(tree.right, idx+1, lst)
-
-        lst[idx].append(tree.val)
-        return
-        
+        return averages
