@@ -24,15 +24,11 @@ class Solution:
 
         return False
         '''
-        sliding_window = set()
+        sliding_window = {}
 
-        for idx in range(len(nums)) :
-            if idx > k :
-                sliding_window.remove(nums[idx-k-1])
-
-            if nums[idx] in sliding_window :
+        for idx, val in enumerate(nums) :
+            if val in sliding_window and idx - sliding_window[val] <= k :
                 return True
-
-            sliding_window.add(nums[idx])
+            sliding_window[val] = idx
 
         return False
