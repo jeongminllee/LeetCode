@@ -8,22 +8,23 @@ class Solution:
         dummy = ListNode()
         res = dummy
 
-        total = carry = 0
+        sm = flag = 0
 
-        while l1 or l2 or carry :
-            total = carry 
+        while l1 or l2 or flag :
+            sm = flag
 
             if l1 :
-                total += l1.val
+                sm += l1.val
                 l1 = l1.next
-
+            
             if l2 :
-                total += l2.val
+                sm += l2.val
                 l2 = l2.next
 
-            num = total % 10
-            carry = total // 10
-            dummy.next = ListNode(num)
-            dummy = dummy.next
+            flag = sm // 10
+            num = sm % 10
 
-        return res.next
+            res.next = ListNode(num)
+            res = res.next
+
+        return dummy.next
