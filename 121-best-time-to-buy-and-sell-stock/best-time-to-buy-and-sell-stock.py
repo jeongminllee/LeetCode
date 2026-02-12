@@ -6,6 +6,6 @@ class Solution:
             if curr > prices[i] :
                 curr = prices[i]
             else :
-                dp[i] = max(prices[i] - curr, dp[i-1])
+                dp[i] = prices[i] - curr
 
         return max(dp)
