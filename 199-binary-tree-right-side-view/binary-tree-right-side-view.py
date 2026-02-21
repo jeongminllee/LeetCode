@@ -5,25 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def rightSideView(self, root: TreeNode) -> List[int]:
-        result = []  # Initialize an empty list to store the rightmost values
-        q = collections.deque([root])  # Initialize a deque with the root node
-        
-        # Perform BFS traversal
-        while q:
-            rightMost = None  # Initialize a variable to track the rightmost node at each level
-            n = len(q)  # Get the number of nodes at the current level
-            
-            # Iterate through each node at the current level
-            for i in range(n):
-                node = q.popleft()  # Dequeue a node from the left of the deque
-                if node:
-                    rightMost = node  # Update the rightmost node
-                    q.append(node.left)  # Enqueue the left child
-                    q.append(node.right)  # Enqueue the right child
-            
-            # If a rightmost node was encountered at the current level, append its value to the result
-            if rightMost:
-                result.append(rightMost.val)
-        
-        return result  # Return the list containing the rightmost values
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        q = deque()
+        q.append(root)
+        res = []
+
+        while q :
+            node = None
+
+            for _ in range(len(q)) :
+                curr = q.popleft()
+                if curr :
+                    node = curr
+                    q.append(curr.left)
+                    q.append(curr.right)
+
+            if node :
+                res.append(node.val)
+
+        return res
