@@ -5,6 +5,6 @@ class Solution:
             if n in visited :
                 return False
             visited.add(n)
-            n = sum((int(num)%10)**2 for num in str(n))
+            n = sum(int(num)**2 for num in str(n))
             
         return True
