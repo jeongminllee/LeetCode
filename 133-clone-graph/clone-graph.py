@@ -15,12 +15,12 @@ class Solution:
             if node in graph :
                 return graph[node]
 
-            copy_ = Node(node.val)
-            graph[node] = copy_
+            nnode = Node(node.val)
+            graph[node] = nnode
 
             for neighbor in node.neighbors :
-                copy_.neighbors.append(dfs(neighbor))
+                nnode.neighbors.append(dfs(neighbor))
 
-            return copy_
+            return nnode
 
         return dfs(node) if node else None
