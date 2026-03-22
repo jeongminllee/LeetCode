@@ -13,9 +13,9 @@ class Solution:
                 else :
                     return False
 
-        for i in range(len(t)) :
             if t[i] not in t_map :
                 t_map[t[i]] = s[i]
+
             else :
                 if t_map[t[i]] == s[i] :
                     continue
