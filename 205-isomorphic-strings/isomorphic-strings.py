@@ -1,21 +1,25 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        dct_s = {}
-        dct_t = {}
+        s_map = {}
+        t_map = {}
 
-        for idx in range(len(s)) :
-            if s[idx] not in dct_s.keys() :
-                dct_s[s[idx]] = t[idx]
+        for i in range(len(s)) :
+            if s[i] not in s_map :
+                s_map[s[i]] = t[i]
 
             else :
-                if dct_s[s[idx]] != t[idx] :
+                if s_map[s[i]] == t[i] :
+                    continue
+                else :
                     return False
 
-        for idx in range(len(t)) :
-            if t[idx] not in dct_t.keys() :
-                dct_t[t[idx]] = s[idx]
+        for i in range(len(t)) :
+            if t[i] not in t_map :
+                t_map[t[i]] = s[i]
             else :
-                if dct_t[t[idx]] != s[idx] :
+                if t_map[t[i]] == s[i] :
+                    continue
+                else :
                     return False
-
+        
         return True
