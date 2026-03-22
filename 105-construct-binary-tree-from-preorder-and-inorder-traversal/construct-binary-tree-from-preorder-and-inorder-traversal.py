@@ -6,12 +6,12 @@
 #         self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        inorder_map = {val : idx for idx, val in enumerate(inorder)}
+        inorder_map = {val: idx for idx, val in enumerate(inorder)}
         self.idx = 0
 
         def build(start, end) :
             if start > end :
-                return None
+                return None 
 
             root_val = preorder[self.idx]
             self.idx += 1
@@ -19,10 +19,9 @@ class Solution:
 
             mid = inorder_map[root_val]
 
-            root.left = build(start, mid-1)
-            root.right = build(mid+1, end)
+            root.left = build(start, mid - 1)
+            root.right = build(mid + 1, end)
 
             return root
 
-        return build(0, len(preorder)-1)
-        
+        return build(0, len(inorder) - 1)
