@@ -1,14 +1,14 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        pref = strs[0]
-        pref_len = len(pref)
+        strs.sort(key=len)
+        start = strs[0]
+        n = len(start)
 
         for s in strs[1:] :
-            while pref != s[:pref_len] :
-                pref_len -= 1
-                if pref_len == 0 :
-                    return ''
-                
-                pref = pref[:pref_len]
-
-        return pref
+            while n != 0 :
+                if s[:n] == start[:n] : 
+                    break
+                else :
+                    n -= 1
+        
+        return start[:n]
