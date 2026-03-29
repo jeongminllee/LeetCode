@@ -18,30 +18,26 @@ class Solution:
         if n == 1 :
             node.val = True if grid[0][0] == 1 else False
             return node
-
-        return self.my_construct(grid, 0, 0, n)
-
-    def my_construct(self, grid : List[List[int]], sr, sc, delta) :
-        one, zero = False, False
-
-        for row in grid[sr:sr+delta] :
-            col = row[sc:sc+delta] 
-            for local_v in col :
-                if local_v == 0 :
-                    zero |= True
-                else :
-                    one |= True
-
-        # 0 으로만 구성됨
-        if one == False and zero == True :
-            return Node(False, True, None, None, None, None)
         
-        # 1 로만 구성됨
-        if one == True and zero == False :
-            return Node(True, True, None, None, None, None)
+        return self.checkLeaf(grid, 0, 0, n)
 
-        return Node(True, False, 
-                    self.my_construct(grid, sr, sc, delta//2),
-                    self.my_construct(grid, sr, sc + delta//2, delta//2),
-                    self.my_construct(grid, sr+delta//2, sc, delta//2),
-                    self.my_construct(grid, sr+delta//2, sc+delta//2, delta//2),)
+    def checkLeaf(self, grid : List[List[int]], sr: int, sc: int, leng: int) :
+        sm = 0
+
+        for row in grid[sr:sr+leng] : 
+            col = row[sc:sc+leng]
+            for v in col :
+                sm += v
+
+        # 1로만 구성됨
+        if sm == leng * leng:
+            return Node(True, True, None, None, None, None)
+        # 0으로만 구성됨
+        elif sm == 0 :
+            return Node(False, True, None, None, None, None)
+        else :
+            return Node(True, False, 
+                        self.checkLeaf(grid, sr, sc, leng//2),
+                        self.checkLeaf(grid, sr, sc+leng//2, leng//2),
+                        self.checkLeaf(grid, sr+leng//2, sc, leng//2),
+                        self.checkLeaf(grid, sr+leng//2, sc+leng//2,leng//2),)
